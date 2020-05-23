@@ -1,5 +1,8 @@
-var mediaRate = 1;
-var lastMediaRate = 1;
+var mediaRate = 1
+var lastMediaRate = 1
+var rateMax = 5
+var rateMin = 0.1
+var rateInterv = 0.1
 
 
 var painel = document.createElement('div')
@@ -17,18 +20,22 @@ painel = document.getElementById('painel-wmf')
 
 function changeRate(rate,calc=true){
 
-  console.log(mediaRate)
-  console.log(rate)
+  // console.log(mediaRate)
+  // console.log(rate)
 
   lastMediaRate = mediaRate;
+  
+  rate = parseFloat(rate)
 
   if(calc){
-    mediaRate = (parseFloat(mediaRate) + rate).toFixed(1)
+    mediaRate = (parseFloat(mediaRate) + rate)
   }else{
     mediaRate = rate
   }
 
-  console.log(mediaRate)
+  mediaRate = mediaRate.toFixed(1)
+
+  // console.log(mediaRate)
 
   painel.querySelector('span').innerText = mediaRate
   
@@ -57,11 +64,11 @@ function changeRate(rate,calc=true){
 
 document.addEventListener('keypress', function (e){
 
-  if(e.key == '+' && mediaRate < 5){
-    changeRate(0.1)
-  }else if(e.key == '-' && mediaRate > 0.1){
-    changeRate(-0.1)
-  }else if( !isNaN(parseInt(e.key)) ){
+  if( (e.key == '+' || e.key == 'd') && mediaRate < rateMax){
+    changeRate(rateInterv)
+  }else if( (e.key == '-' || e.key == 's') && mediaRate > rateMin){
+    changeRate(-rateInterv)
+  }else if( !isNaN(parseInt(e.key)) && e.key < rateMax ){
     changeRate(e.key,false)
   }
   else if(e.key === 'Enter'){
@@ -70,10 +77,10 @@ document.addEventListener('keypress', function (e){
 })
 
 painel.querySelector('button:first-child').addEventListener('click', function (e){
-  changeRate(-0.1)
+  changeRate(-rateInterv)
 })
 painel.querySelector('button:last-child').addEventListener('click', function (e){
-  changeRate(0.1)
+  changeRate(rateInterv)
 })
 
 
