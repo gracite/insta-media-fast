@@ -10,6 +10,7 @@ painel.id = 'painel-wmf'
 
 painel.innerHTML += '<button>-</button>'
 painel.innerHTML += '<span>1.0</span>'
+painel.innerHTML += '<div id="back"></div>'
 painel.innerHTML += '<button>+</button>'
 
 document.body.insertBefore(painel, document.body.firstChild)
