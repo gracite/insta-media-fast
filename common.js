@@ -1,7 +1,7 @@
 var mediaRate = 1
 var lastMediaRate = 1
-var rateMax = 5
-var rateMin = 0.1
+var rateMax = 6.1
+var rateMin = 0
 var rateInterv = 0.1
 
 
